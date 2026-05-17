@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
@@ -9,201 +7,372 @@
 
 <title>LavaListo Express</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
 <style>
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#f5f8ff;
+background:#eef5ff;
 overflow-x:hidden;
+color:#0c2461;
 }
 
 header{
 min-height:100vh;
-background:linear-gradient(135deg,#003cff,#00cfff);
-display:flex;
+background:
+linear-gradient(135deg,#003cff 0%,#00d4ff 100%);
+padding:40px 20px;
+position:relative;
+overflow:hidden;
+}
+
+header::before{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(255,255,255,0.08);
+border-radius:50%;
+top:-150px;
+left:-150px;
+}
+
+header::after{
+content:'';
+position:absolute;
+width:350px;
+height:350px;
+background:rgba(255,255,255,0.08);
+border-radius:50%;
+bottom:-120px;
+right:-100px;
+}
+
+.hero{
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
 align-items:center;
-justify-content:center;
-flex-direction:column;
-padding:40px;
+position:relative;
+z-index:2;
+}
+
+.hero-left{
+color:white;
+}
+
+.logo{
+font-size:90px;
+font-weight:800;
+line-height:0.9;
+text-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+.logo span{
+color:#ffe600;
+}
+
+.slogan{
+font-size:32px;
+margin-top:25px;
+font-weight:500;
+}
+
+.main-card{
+margin-top:40px;
+background:white;
+padding:35px;
+border-radius:35px;
+color:#0c2461;
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+.main-card h2{
+font-size:38px;
+margin-bottom:20px;
+color:#003cff;
+}
+
+.main-card p{
+font-size:19px;
+line-height:1.7;
+}
+
+.price-box{
+margin-top:25px;
+background:linear-gradient(135deg,#003cff,#00cfff);
+padding:25px;
+border-radius:25px;
 color:white;
 text-align:center;
 }
 
-header h1{
-font-size:80px;
+.price-box h3{
+font-size:28px;
+margin-bottom:10px;
 }
 
-header p{
-font-size:24px;
-margin-top:20px;
+.price{
+font-size:65px;
+font-weight:800;
+color:#ffe600;
 }
 
 .btn{
 display:inline-block;
 margin-top:30px;
 padding:18px 35px;
-background:#ffe100;
+background:#ffe600;
 color:#002c8f;
 text-decoration:none;
-font-weight:bold;
-border-radius:50px;
+font-weight:700;
+border-radius:60px;
+font-size:18px;
 transition:0.3s;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .btn:hover{
-transform:scale(1.05);
+transform:translateY(-4px);
+}
+
+.hero-right{
+position:relative;
+}
+
+.hero-right img{
+width:100%;
+border-radius:35px;
+box-shadow:0 25px 50px rgba(0,0,0,0.25);
+}
+
+.bubble{
+position:absolute;
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(5px);
+border-radius:50%;
+animation:float 5s infinite ease-in-out;
+}
+
+.b1{
+width:90px;
+height:90px;
+top:-20px;
+right:40px;
+}
+
+.b2{
+width:50px;
+height:50px;
+bottom:50px;
+left:-20px;
+}
+
+.b3{
+width:70px;
+height:70px;
+bottom:-10px;
+right:120px;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-20px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
 }
 
 section{
-padding:80px 20px;
-max-width:1200px;
+max-width:1300px;
 margin:auto;
+padding:100px 20px;
 }
 
 .title{
 text-align:center;
-font-size:45px;
-margin-bottom:50px;
+font-size:55px;
+margin-bottom:70px;
+font-weight:800;
 color:#003cff;
 }
 
-.tabs{
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-margin-bottom:40px;
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:35px;
 }
 
-.tab-btn{
-padding:15px 25px;
-border:none;
-border-radius:50px;
-background:white;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.tab-btn.active{
-background:linear-gradient(135deg,#003cff,#00cfff);
-color:white;
-}
-
-.tab-content{
-display:none;
+.service-card{
 background:white;
 padding:40px;
-border-radius:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-text-align:center;
-animation:fade 0.4s ease;
+border-radius:35px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+transition:0.3s;
+position:relative;
+overflow:hidden;
 }
 
-.tab-content.active{
-display:block;
+.service-card::before{
+content:'';
+position:absolute;
+width:120px;
+height:120px;
+background:linear-gradient(135deg,#003cff,#00d4ff);
+border-radius:50%;
+top:-40px;
+right:-40px;
+opacity:0.1;
 }
 
-.tab-content h3{
-font-size:38px;
+.service-card:hover{
+transform:translateY(-10px);
+}
+
+.service-card h3{
+font-size:34px;
 margin-bottom:20px;
 color:#003cff;
 }
 
-.tab-content p{
-font-size:20px;
-line-height:1.7;
+.service-card p{
+font-size:18px;
+line-height:1.8;
 }
 
-.price{
-margin-top:20px;
-font-size:50px;
-font-weight:bold;
+.service-price{
+margin-top:25px;
+font-size:48px;
+font-weight:800;
 color:#00b894;
 }
 
-.form-box{
+.form-section{
 background:white;
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+padding:60px;
+border-radius:40px;
+box-shadow:0 15px 50px rgba(0,0,0,0.08);
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
 input,
-textarea,
-select{
-width:100%;
-padding:16px;
-margin-bottom:20px;
-border-radius:12px;
-border:1px solid #ccc;
-font-size:16px;
-}
-
-button{
+select,
+textarea{
 width:100%;
 padding:18px;
-background:#003cff;
-color:white;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
+border-radius:18px;
+border:2px solid #dfe6ff;
+font-size:16px;
+outline:none;
 }
 
-button:hover{
-background:#0027b5;
+textarea{
+grid-column:1/3;
+}
+
+.submit-btn{
+margin-top:20px;
+width:100%;
+padding:20px;
+border:none;
+background:linear-gradient(135deg,#003cff,#00cfff);
+color:white;
+font-size:20px;
+font-weight:700;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.submit-btn:hover{
+transform:scale(1.02);
 }
 
 footer{
 background:#002c8f;
-color:white;
+padding:50px 20px;
 text-align:center;
-padding:40px;
+color:white;
+margin-top:80px;
+}
+
+footer h2{
+font-size:40px;
+margin-bottom:15px;
+}
+
+footer p{
+font-size:18px;
+margin-top:10px;
 }
 
 .whatsapp{
 position:fixed;
-right:20px;
-bottom:20px;
+bottom:25px;
+right:25px;
 background:#25D366;
 color:white;
-padding:18px 25px;
-border-radius:50px;
+padding:18px 28px;
+border-radius:60px;
 text-decoration:none;
-font-weight:bold;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
+font-weight:700;
+box-shadow:0 15px 30px rgba(0,0,0,0.25);
+z-index:999;
 }
 
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(10px);
+@media(max-width:950px){
+
+.hero{
+grid-template-columns:1fr;
 }
 
-to{
-opacity:1;
-transform:translateY(0);
-}
+.logo{
+font-size:60px;
+text-align:center;
 }
 
-@media(max-width:768px){
+.slogan{
+text-align:center;
+font-size:24px;
+}
 
-header h1{
-font-size:50px;
+.main-card{
+text-align:center;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+textarea{
+grid-column:auto;
 }
 
 .title{
-font-size:35px;
+font-size:40px;
 }
 
 }
@@ -216,13 +385,62 @@ font-size:35px;
 
 <header>
 
-<h1>LavaListo Express</h1>
+<div class="hero">
 
-<p>Tu ropa limpia, tu tiempo libre</p>
+<div class="hero-left">
 
-<a href="#solicitud" class="btn">
+<div class="logo">
+Lava<span>Listo</span>
+</div>
+
+<div class="slogan">
+Tu ropa limpia,<br>
+tu tiempo libre
+</div>
+
+<div class="main-card">
+
+<h2>
+Recogemos, Lavamos y Entregamos
+</h2>
+
+<p>
+Servicio premium de lavandería a domicilio en Bogotá.
+Recogemos tu ropa, la lavamos profesionalmente
+y la entregamos lista para usar.
+</p>
+
+<div class="price-box">
+
+<h3>
+Combo 12 Prendas
+</h3>
+
+<div class="price">
+$28.000
+</div>
+
+</div>
+
+<a href="#formulario" class="btn">
 Solicitar Recogida
 </a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?q=80&w=1200&auto=format&fit=crop">
+
+<div class="bubble b1"></div>
+<div class="bubble b2"></div>
+<div class="bubble b3"></div>
+
+</div>
+
+</div>
 
 </header>
 
@@ -232,84 +450,66 @@ Solicitar Recogida
 Nuestros Servicios
 </h2>
 
-<div class="tabs">
+<div class="services">
 
-<button class="tab-btn active" onclick="showTab('americano', event)">
+<div class="service-card">
+
+<h3>
 Lavado Americano
-</button>
-
-<button class="tab-btn" onclick="showTab('combo', event)">
-Combo 12 Prendas
-</button>
-
-<button class="tab-btn" onclick="showTab('premium', event)">
-Lavado Premium
-</button>
-
-<button class="tab-btn" onclick="showTab('express', event)">
-Servicio Express
-</button>
-
-</div>
-
-<div class="tab-content active" id="americano">
-
-<h3>Lavado Americano</h3>
+</h3>
 
 <p>
 Lavado + secado + aromatizante.
-Servicio por peso.
+Servicio por peso ideal para ropa diaria.
 </p>
 
 </div>
 
-<div class="tab-content" id="combo">
+<div class="service-card">
 
-<h3>Combo 12 Prendas</h3>
+<h3>
+Combo 12 Prendas
+</h3>
 
 <p>
-Lavado profesional para ropa de vestir.
+Lavado profesional de ropa de vestir
+con acabado premium.
 </p>
 
-<div class="price">
+<div class="service-price">
 $28.000
 </div>
 
 </div>
 
-<div class="tab-content" id="premium">
+<div class="service-card">
 
-<h3>Lavado Premium</h3>
+<h3>
+Lavado Premium
+</h3>
 
 <p>
-Prendas delicadas, chaquetas,
-cobijas y ropa premium.
+Prendas delicadas, cobijas,
+chaquetas, vestidos y ropa especial.
 </p>
 
 </div>
-
-<div class="tab-content" id="express">
-
-<h3>Servicio Express</h3>
-
-<p>
-Recogemos y entregamos rápidamente.
-Ideal para emergencias.
-</p>
 
 </div>
 
 </section>
 
-<section id="solicitud">
+<section id="formulario">
 
 <h2 class="title">
 Solicita Recogida
 </h2>
 
-<div class="form-box">
+<div class="form-section">
 
 <form id="pickupForm">
+
+<div class="form-grid">
 
 <input type="text" id="nombre" placeholder="Nombre" required>
 
@@ -321,12 +521,13 @@ Solicita Recogida
 <option>Lavado Americano</option>
 <option>Combo 12 Prendas</option>
 <option>Lavado Premium</option>
-<option>Servicio Express</option>
 </select>
 
-<textarea id="mensaje" rows="5" placeholder="Observaciones"></textarea>
+<textarea id="mensaje" rows="6" placeholder="Observaciones"></textarea>
 
-<button type="submit">
+</div>
+
+<button class="submit-btn" type="submit">
 Enviar Solicitud
 </button>
 
@@ -338,15 +539,22 @@ Enviar Solicitud
 
 <footer>
 
-<h2>LavaListo Express</h2>
+<h2>
+LavaListo Express
+</h2>
 
-<p>Bogotá - Servicio a domicilio</p>
+<p>
+Bogotá - Servicio a domicilio
+</p>
 
-<p>WhatsApp: 3166977616</p>
+<p>
+WhatsApp: 3166977616
+</p>
 
 </footer>
 
-<a class="whatsapp"
+<a
+class="whatsapp"
 href="https://wa.me/573166977616"
 target="_blank">
 
@@ -355,25 +563,6 @@ WhatsApp
 </a>
 
 <script>
-
-function showTab(tabId, event){
-
-const tabs = document.querySelectorAll('.tab-content');
-const buttons = document.querySelectorAll('.tab-btn');
-
-tabs.forEach(tab => {
-tab.classList.remove('active');
-});
-
-buttons.forEach(btn => {
-btn.classList.remove('active');
-});
-
-document.getElementById(tabId).classList.add('active');
-
-event.target.classList.add('active');
-
-}
 
 const form = document.getElementById('pickupForm');
 
@@ -387,7 +576,8 @@ const direccion = document.getElementById('direccion').value;
 const servicio = document.getElementById('servicio').value;
 const mensaje = document.getElementById('mensaje').value;
 
-const texto = `Hola LavaListo Express,%0A%0A`
+const texto =
+`Hola LavaListo Express,%0A%0A`
 + `Quiero solicitar recogida.%0A%0A`
 + `Nombre: ${nombre}%0A`
 + `Teléfono: ${telefono}%0A`
@@ -395,7 +585,10 @@ const texto = `Hola LavaListo Express,%0A%0A`
 + `Servicio: ${servicio}%0A`
 + `Observaciones: ${mensaje}`;
 
-window.open(`https://wa.me/573166977616?text=${texto}`,'_blank');
+window.open(
+`https://wa.me/573166977616?text=${texto}`,
+'_blank'
+);
 
 });
 
