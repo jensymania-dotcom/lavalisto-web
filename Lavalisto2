@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        Chaquetas, cobijas,
+        ropa delicada y prendas especiales.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="formulario">
+
+  <h2 class="title">
+    Solicita Recogida a Domicilio
+  </h2>
+
+  <form id="pickupForm">
+
+    <input type="text" id="nombre" placeholder="Nombre" required>
+
+    <input type="text" id="telefono" placeholder="Teléfono" required>
+
+    <input type="text" id="direccion" placeholder="Dirección" required>
+
+    <select id="servicio">
+      <option>Lavado Americano</option>
+      <option>Combo 12 Prendas</option>
+      <option>Lavado Especial</option>
+    </select>
+
+    <textarea id="mensaje" rows="5" placeholder="Observaciones"></textarea>
+
+    <button type="submit">
+      Enviar Solicitud
+    </button>
+
+  </form>
+
+</section>
+
+<footer>
+  <h2>LavaListo Express</h2>
+  <p>Bogotá - Servicio a domicilio</p>
+  <p>WhatsApp: 3166977616</p>
+</footer>
+
+<a class="whatsapp"
+href="https://wa.me/573166977616"
+target="_blank">
+WhatsApp
+</a>
+
+<script>
+
+const form = document.getElementById('pickupForm');
+
+form.addEventListener('submit', function(e){
+
+  e.preventDefault();
+
+  const nombre = document.getElementById('nombre').value;
+  const telefono = document.getElementById('telefono').value;
+  const direccion = document.getElementById('direccion').value;
+  const servicio = document.getElementById('servicio').value;
+  const mensaje = document.getElementById('mensaje').value;
+
+  const texto = `Hola LavaListo Express,%0A%0A`
+  + `Quiero solicitar recogida de ropa.%0A%0A`
+  + `Nombre: ${nombre}%0A`
+  + `Teléfono: ${telefono}%0A`
+  + `Dirección: ${direccion}%0A`
+  + `Servicio: ${servicio}%0A`
+  + `Observaciones: ${mensaje}`;
+
+  window.open(`https://wa.me/573166977616?text=${texto}`,'_blank');
+
+});
+
+</script>
+
+</body>
+</html>
