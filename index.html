@@ -1,87 +1,268 @@
+
 <!DOCTYPE html>
-<h3>Combo 12 Prendas</h3>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LavaListo Express</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f5f8ff;
+overflow-x:hidden;
+}
+
+header{
+min-height:100vh;
+background:linear-gradient(135deg,#003cff,#00cfff);
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+padding:40px;
+color:white;
+text-align:center;
+}
+
+header h1{
+font-size:80px;
+}
+
+header p{
+font-size:24px;
+margin-top:20px;
+}
+
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:18px 35px;
+background:#ffe100;
+color:#002c8f;
+text-decoration:none;
+font-weight:bold;
+border-radius:50px;
+}
+
+section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.title{
+text-align:center;
+font-size:45px;
+margin-bottom:50px;
+color:#003cff;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.card h3{
+font-size:30px;
+margin-bottom:20px;
+color:#003cff;
+}
+
+.card p{
+font-size:18px;
+line-height:1.6;
+}
+
+.price{
+margin-top:20px;
+font-size:40px;
+font-weight:bold;
+color:#00b894;
+}
+
+.form-box{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:16px;
+margin-bottom:20px;
+border-radius:12px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:18px;
+background:#003cff;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+footer{
+background:#002c8f;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+color:white;
+padding:18px 25px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>LavaListo Express</h1>
+
+<p>Tu ropa limpia, tu tiempo libre</p>
+
+<a href="#solicitud" class="btn">
+Solicitar Recogida
+</a>
+
+</header>
+
+<section>
+
+<h2 class="title">
+Nuestros Servicios
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Lavado Americano</h3>
+
 <p>
-Lavado profesional para ropa de vestir.
+Lavado + secado + aromatizante.
+Servicio por peso.
 </p>
-<div class="price">$28.000</div>
 </div>
 
 <div class="card">
+
+<h3>Combo 12 Prendas</h3>
+
+<p>
+Lavado profesional para ropa de vestir.
+</p>
+
+<div class="price">
+$28.000
+</div>
+
+</div>
+
+<div class="card">
+
 <h3>Lavado Especial</h3>
+
 <p>
 Prendas delicadas, chaquetas,
 cobijas y ropa premium.
 </p>
+
 </div>
 
 </div>
+
 </section>
 
 <section id="solicitud">
-<h2 class="title">Solicita Recogida</h2>
+
+<h2 class="title">
+Solicita Recogida
+</h2>
 
 <div class="form-box">
-<form id="pickupForm">
 
-<input type="text" id="nombre" placeholder="Nombre" required>
+<form>
 
-<input type="text" id="telefono" placeholder="Teléfono" required>
+<input type="text" placeholder="Nombre">
 
-<input type="text" id="direccion" placeholder="Dirección" required>
+<input type="text" placeholder="Teléfono">
 
-<select id="servicio">
+<input type="text" placeholder="Dirección">
+
+<select>
 <option>Lavado Americano</option>
 <option>Combo 12 Prendas</option>
 <option>Lavado Especial</option>
 </select>
 
-<textarea id="mensaje" rows="5" placeholder="Observaciones"></textarea>
+<textarea rows="5" placeholder="Observaciones"></textarea>
 
-<button type="submit">
+<button>
 Enviar Solicitud
 </button>
 
 </form>
+
 </div>
+
 </section>
 
 <footer>
+
 <h2>LavaListo Express</h2>
+
 <p>Bogotá - Servicio a domicilio</p>
-<p>WhatsApp: 3026647911</p>
+
+<p>WhatsApp: 3166977616</p>
+
 </footer>
 
-<a class="whatsapp" href="https://wa.me/573166977616" target="_blank">
+<a class="whatsapp"
+href="https://wa.me/573166977616"
+target="_blank">
+
 WhatsApp
+
 </a>
-
-<script>
-
-const form = document.getElementById('pickupForm');
-
-form.addEventListener('submit', function(e){
-
- e.preventDefault();
-
- const nombre = document.getElementById('nombre').value;
- const telefono = document.getElementById('telefono').value;
- const direccion = document.getElementById('direccion').value;
- const servicio = document.getElementById('servicio').value;
- const mensaje = document.getElementById('mensaje').value;
-
- const texto = `Hola LavaListo Express,%0A%0A`
- + `Quiero solicitar recogida.%0A%0A`
- + `Nombre: ${nombre}%0A`
- + `Teléfono: ${telefono}%0A`
- + `Dirección: ${direccion}%0A`
- + `Servicio: ${servicio}%0A`
- + `Observaciones: ${mensaje}`;
-
- window.open(`https://wa.me/573166977616?text=${texto}`,'_blank');
-
-});
-
-</script>
 
 </body>
 </html>
