@@ -53,6 +53,11 @@ color:#002c8f;
 text-decoration:none;
 font-weight:bold;
 border-radius:50px;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 section{
@@ -68,34 +73,59 @@ margin-bottom:50px;
 color:#003cff;
 }
 
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+.tabs{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+margin-bottom:40px;
 }
 
-.card{
+.tab-btn{
+padding:15px 25px;
+border:none;
+border-radius:50px;
 background:white;
-padding:35px;
-border-radius:25px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.tab-btn.active{
+background:linear-gradient(135deg,#003cff,#00cfff);
+color:white;
+}
+
+.tab-content{
+display:none;
+background:white;
+padding:40px;
+border-radius:30px;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 text-align:center;
+animation:fade 0.4s ease;
 }
 
-.card h3{
-font-size:30px;
+.tab-content.active{
+display:block;
+}
+
+.tab-content h3{
+font-size:38px;
 margin-bottom:20px;
 color:#003cff;
 }
 
-.card p{
-font-size:18px;
-line-height:1.6;
+.tab-content p{
+font-size:20px;
+line-height:1.7;
 }
 
 .price{
 margin-top:20px;
-font-size:40px;
+font-size:50px;
 font-weight:bold;
 color:#00b894;
 }
@@ -115,6 +145,7 @@ padding:16px;
 margin-bottom:20px;
 border-radius:12px;
 border:1px solid #ccc;
+font-size:16px;
 }
 
 button{
@@ -127,6 +158,10 @@ border-radius:12px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
+}
+
+button:hover{
+background:#0027b5;
 }
 
 footer{
@@ -146,6 +181,31 @@ padding:18px 25px;
 border-radius:50px;
 text-decoration:none;
 font-weight:bold;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:50px;
+}
+
+.title{
+font-size:35px;
+}
+
 }
 
 </style>
@@ -172,18 +232,38 @@ Solicitar Recogida
 Nuestros Servicios
 </h2>
 
-<div class="cards">
+<div class="tabs">
 
-<div class="card">
+<button class="tab-btn active" onclick="showTab('americano', event)">
+Lavado Americano
+</button>
+
+<button class="tab-btn" onclick="showTab('combo', event)">
+Combo 12 Prendas
+</button>
+
+<button class="tab-btn" onclick="showTab('premium', event)">
+Lavado Premium
+</button>
+
+<button class="tab-btn" onclick="showTab('express', event)">
+Servicio Express
+</button>
+
+</div>
+
+<div class="tab-content active" id="americano">
+
 <h3>Lavado Americano</h3>
 
 <p>
 Lavado + secado + aromatizante.
 Servicio por peso.
 </p>
+
 </div>
 
-<div class="card">
+<div class="tab-content" id="combo">
 
 <h3>Combo 12 Prendas</h3>
 
@@ -197,9 +277,9 @@ $28.000
 
 </div>
 
-<div class="card">
+<div class="tab-content" id="premium">
 
-<h3>Lavado Especial</h3>
+<h3>Lavado Premium</h3>
 
 <p>
 Prendas delicadas, chaquetas,
@@ -207,6 +287,15 @@ cobijas y ropa premium.
 </p>
 
 </div>
+
+<div class="tab-content" id="express">
+
+<h3>Servicio Express</h3>
+
+<p>
+Recogemos y entregamos rápidamente.
+Ideal para emergencias.
+</p>
 
 </div>
 
@@ -220,23 +309,24 @@ Solicita Recogida
 
 <div class="form-box">
 
-<form>
+<form id="pickupForm">
 
-<input type="text" placeholder="Nombre">
+<input type="text" id="nombre" placeholder="Nombre" required>
 
-<input type="text" placeholder="Teléfono">
+<input type="text" id="telefono" placeholder="Teléfono" required>
 
-<input type="text" placeholder="Dirección">
+<input type="text" id="direccion" placeholder="Dirección" required>
 
-<select>
+<select id="servicio">
 <option>Lavado Americano</option>
 <option>Combo 12 Prendas</option>
-<option>Lavado Especial</option>
+<option>Lavado Premium</option>
+<option>Servicio Express</option>
 </select>
 
-<textarea rows="5" placeholder="Observaciones"></textarea>
+<textarea id="mensaje" rows="5" placeholder="Observaciones"></textarea>
 
-<button>
+<button type="submit">
 Enviar Solicitud
 </button>
 
@@ -263,6 +353,53 @@ target="_blank">
 WhatsApp
 
 </a>
+
+<script>
+
+function showTab(tabId, event){
+
+const tabs = document.querySelectorAll('.tab-content');
+const buttons = document.querySelectorAll('.tab-btn');
+
+tabs.forEach(tab => {
+tab.classList.remove('active');
+});
+
+buttons.forEach(btn => {
+btn.classList.remove('active');
+});
+
+document.getElementById(tabId).classList.add('active');
+
+event.target.classList.add('active');
+
+}
+
+const form = document.getElementById('pickupForm');
+
+form.addEventListener('submit', function(e){
+
+e.preventDefault();
+
+const nombre = document.getElementById('nombre').value;
+const telefono = document.getElementById('telefono').value;
+const direccion = document.getElementById('direccion').value;
+const servicio = document.getElementById('servicio').value;
+const mensaje = document.getElementById('mensaje').value;
+
+const texto = `Hola LavaListo Express,%0A%0A`
++ `Quiero solicitar recogida.%0A%0A`
++ `Nombre: ${nombre}%0A`
++ `Teléfono: ${telefono}%0A`
++ `Dirección: ${direccion}%0A`
++ `Servicio: ${servicio}%0A`
++ `Observaciones: ${mensaje}`;
+
+window.open(`https://wa.me/573166977616?text=${texto}`,'_blank');
+
+});
+
+</script>
 
 </body>
 </html>
